@@ -1,0 +1,27 @@
+function updateClock() {
+    const now = new Date();
+
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+
+    let ampm = hours >= 12 ? 'PM' : 'AM';
+
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    document.getElementById('timeBox').innerText = `${hours}:${minutes}`;
+    document.getElementById('secBox').innerText = seconds;
+    document.getElementById('ampmBox').innerText = ampm;
+
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    document.getElementById('dateBox').innerText = now.toLocaleDateString('uz-UZ', options);
+}
+
+setInterval(updateClock, 1000);
+
+updateClock();
